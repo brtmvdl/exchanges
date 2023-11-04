@@ -5,6 +5,8 @@ export class HistoryModel extends Model {
   name = 'history'
   datetime = getNow()
 
+  state = {}
+
   setDatetime(datetime = getNow()) {
     this.datetime = datetime
     return this
@@ -12,8 +14,6 @@ export class HistoryModel extends Model {
 
   toJSON() {
     const { name, datetime } = this
-
-    return { name, datetime }
+    return { name, datetime, [name]: this.state }
   }
-
 }

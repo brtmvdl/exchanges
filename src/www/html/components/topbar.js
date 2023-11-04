@@ -17,6 +17,8 @@ export class TopBar extends HTML {
   }
 
   onCreate() {
+    this.setContainerStyle('margin-bottom', '1rem')
+
     this.setStyle('background-color', COLORS.BLACK_1)
     this.append(this.getFlex())
   }
