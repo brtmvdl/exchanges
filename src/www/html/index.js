@@ -1,27 +1,40 @@
-import { HTML } from '@brtmvdl/frontend'
-import * as COLORS from './colors.js'
+import { HTML, nInput, nButton } from '@brtmvdl/frontend'
+import { TopBar } from './components/topbar.js'
+import { FundModel } from './models/fund.js'
+import * as Local from './utils/local.js'
 
 export class Page extends HTML {
   children = {
-    input: new HTML(),
+    input: new nInput(),
+    button: new nButton(),
   }
 
   onCreate() {
-    this.setStyles()
-    this.append(this.getInput())
+    this.append(new TopBar())
+    this.append(this.getForm())
   }
 
-  setStyles() {
-    this.setStyle('background-color', COLORS.BLACK_1)
+  getForm() {
+    const form = new HTML()
+    form.append(this.getInput())
+    form.append(this.getButton())
+    return form
   }
 
   getInput() {
-    this.children.input.setStyle('margin-bottom', '1rem')
-    this.children.input.setStyle('color', COLORS.WHITE_1)
-    this.children.input.setStyle('text-align', 'center')
-    this.children.input.setStyle('padding', '1rem')
-    this.children.input.setText('Exchanges')
+    this.children.input.setAttr('type', 'number')
 
     return this.children.input
+  }
+
+  getButton() {
+    this.children.button.setText('add funds')
+    this.children.button.on('click', () => {
+      const fund = new FundModel()
+      fund.setValue(+this.children.input.getValue())
+      Local.add(['history'], fund)
+    })
+
+    return this.children.button
   }
 }
