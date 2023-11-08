@@ -7,11 +7,3 @@ services:
       - './src/www/html:/usr/share/nginx/html'
     ports:
       - '8080:80'
-  nodejs:
-    build: 
-      context: './src/www'
-      dockerfile: Dockerfile.nodejs
-    volumes:
-      - './src/www/html:/app'
-    ports:
-      - '8080:80'
