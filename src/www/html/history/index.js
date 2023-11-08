@@ -1,7 +1,7 @@
 import { HTML, nInputTextGroup, nButton, nFlex } from '@brtmvdl/frontend'
-import { TopBar } from './components/topbar.js'
-import { datetime2str } from './utils/datetime.js'
-import * as Local from './utils/local.js'
+import { TopBar } from '../components/topbar.js'
+import { datetime2str } from '../utils/datetime.js'
+import * as Local from '../utils/local.js'
 
 export class Page extends HTML {
   children = {
