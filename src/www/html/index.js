@@ -10,6 +10,7 @@ export class Page extends HTML {
   }
 
   state = {
+    pairValues: [],
     exchange: 'binance',
     exchanges: [
       new KeyValuePair('binance', 'Binance'),
@@ -31,7 +32,10 @@ export class Page extends HTML {
   }
 
   updateValues() {
-    APIS[this.state.exchange]?.getAllValues().then(console.log)
+    APIS[this.state.exchange]?.getAllValues()
+      .then((res) => this.state.pairValues = res)
+      .then(() => console.log(this.state.pairValues))
+      .then(() => setTimeout(this.updateValues(), 500))
   }
 
   getExchangesList() {
