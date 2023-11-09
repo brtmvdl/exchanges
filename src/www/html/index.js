@@ -1,7 +1,7 @@
 import { HTML, nFlex, nImage } from '@brtmvdl/frontend'
 import { TopBar } from './components/topbar.js'
-
 import { KeyValuePair } from './utils/classes.js'
+import * as APIS from './apis.js'
 
 export class Page extends HTML {
   children = {
@@ -31,8 +31,7 @@ export class Page extends HTML {
   }
 
   updateValues() {
-    const self = this
-    setInterval(() => console.log({ exchange: self.state.exchange }), 1000)
+    APIS[this.state.exchange]?.getAllValues().then(console.log)
   }
 
   getExchangesList() {
