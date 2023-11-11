@@ -8,8 +8,8 @@ export const padLeft = (text = '', length = 1, pad = ' ') => {
   return text.toString()
 }
 
-export const price2string = (price = 0, coin = '$') => {
+export const price2string = (price = 0) => {
   const [bills, cents] = price.toString().split('.')
 
-  return `${coin} ${bills},${padLeft(cents, 2, '0')}`
+  return `${bills},${padLeft(cents, 2, '0')}`
 }
