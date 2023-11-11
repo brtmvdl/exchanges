@@ -9,6 +9,13 @@ class nTd2 extends nTd {
   }
 }
 
+const createTd2 = (text = '') => {
+  const td2 = new nTd2()
+  td2.setStyle('width', '10%')
+  td2.setText(text)
+  return td2
+}
+
 export class Page extends HTML {
   state = {
     enabled: {
@@ -84,30 +91,21 @@ export class Page extends HTML {
     const value = new nTr()
     value.setStyle('margin-bottom', '1rem')
 
-    const symbolHTML = new nTd2()
-    symbolHTML.setStyle('width', '12.5%')
-    symbolHTML.setText('symbol')
-    value.append(symbolHTML)
+    value.append(createTd2('symbol'))
 
-    const priceHTML = new nTd2()
-    priceHTML.setStyle('width', '12.5%')
-    priceHTML.setText('price')
-    value.append(priceHTML)
+    value.append(createTd2('price'))
 
-    const price10HTML = new nTd2()
-    price10HTML.setStyle('width', '25%')
-    price10HTML.setText('10s')
-    value.append(price10HTML)
+    value.append(createTd2('price10'))
+    value.append(createTd2('diff10'))
+    value.append(createTd2('percent10'))
 
-    const price30HTML = new nTd2()
-    price30HTML.setStyle('width', '25%')
-    price30HTML.setText('30s')
-    value.append(price30HTML)
+    value.append(createTd2('price30'))
+    value.append(createTd2('diff30'))
+    value.append(createTd2('percent30'))
 
-    const price60HTML = new nTd2()
-    price60HTML.setStyle('width', '25%')
-    price60HTML.setText('60s')
-    value.append(price60HTML)
+    value.append(createTd2('price60'))
+    value.append(createTd2('diff60'))
+    value.append(createTd2('percent60'))
 
     this.children.values.append(value)
 
@@ -115,28 +113,24 @@ export class Page extends HTML {
       const value = new nTr()
       value.setStyle('margin', '1rem')
 
-      const symbolHTML = new nTd2()
-      symbolHTML.setText(symbol)
-      value.append(symbolHTML)
+      value.append(createTd2(symbol))
 
-      const priceHTML = new nTd2()
-      priceHTML.setText(`${price2string(price)}`)
-      value.append(priceHTML)
+      value.append(createTd2(`${price2string(price)}`))
 
-      const price10HTML = new nTd2()
       const price10 = this.getPrice(symbol, 10)
-      price10HTML.setText(`${price2string(price10)} (${price2string(price - price10)}) (${percent(price, price10)})`)
-      value.append(price10HTML)
+      value.append(createTd2(price2string(price10)))
+      value.append(createTd2(price2string(price - price10)))
+      value.append(createTd2(percent(price, price10)))
 
-      const price30HTML = new nTd2()
       const price30 = this.getPrice(symbol, 30)
-      price30HTML.setText(`${price2string(price30)} (${price2string(price - price30)}) (${percent(price, price30)})`)
-      value.append(price30HTML)
+      value.append(createTd2(price2string(price30)))
+      value.append(createTd2(price2string(price - price30)))
+      value.append(createTd2(percent(price, price30)))
 
-      const price60HTML = new nTd2()
       const price60 = this.getPrice(symbol, 60)
-      price60HTML.setText(`${price2string(price60)} (${price2string(price - price60)}) (${percent(price, price60)})`)
-      value.append(price60HTML)
+      value.append(createTd2(price2string(price60)))
+      value.append(createTd2(price2string(price - price60)))
+      value.append(createTd2(percent(price, price60)))
 
       this.children.values.append(value)
     })
