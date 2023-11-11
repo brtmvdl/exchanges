@@ -1,6 +1,7 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import * as Local from './utils/local.js'
 import { price2string } from './utils/str.js'
+import { percent } from './utils/math.js'
 
 export class Page extends HTML {
 
@@ -91,12 +92,12 @@ export class Page extends HTML {
 
       const price10HTML = new HTML()
       const price10 = this.getPrice(symbol, 10)
-      price10HTML.setText(`Price (10s): ${price2string(price10, 'BRL')} (${price2string(price10 - price, 'BRL')})`)
+      price10HTML.setText(`Price (10s): ${price2string(price10, 'BRL')} (${price2string(price10 - price, 'BRL')}) (${percent(price, price10)})`)
       value.append(price10HTML)
 
       const price30HTML = new HTML()
       const price30 = this.getPrice(symbol, 30)
-      price30HTML.setText(`Price (30s): ${price2string(price30, 'BRL')} (${price2string(price30 - price, 'BRL')})`)
+      price30HTML.setText(`Price (30s): ${price2string(price30, 'BRL')} (${price2string(price30 - price, 'BRL')}) (${percent(price, price30)})`)
       value.append(price30HTML)
 
       const exchangeHTML = new HTML()
