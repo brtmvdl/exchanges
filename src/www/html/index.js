@@ -3,6 +3,12 @@ import * as Local from './utils/local.js'
 import { price2string } from './utils/str.js'
 import { percent } from './utils/math.js'
 
+class nTd2 extends nTd {
+  onCreate() {
+    this.setStyle('padding-bottom', '1rem')
+  }
+}
+
 export class Page extends HTML {
   state = {
     enabled: {
@@ -78,27 +84,27 @@ export class Page extends HTML {
     const value = new nTr()
     value.setStyle('margin-bottom', '1rem')
 
-    const symbolHTML = new nTd()
+    const symbolHTML = new nTd2()
     symbolHTML.setStyle('width', '12.5%')
     symbolHTML.setText('symbol')
     value.append(symbolHTML)
 
-    const priceHTML = new nTd()
+    const priceHTML = new nTd2()
     priceHTML.setStyle('width', '12.5%')
     priceHTML.setText('price')
     value.append(priceHTML)
 
-    const price10HTML = new nTd()
+    const price10HTML = new nTd2()
     price10HTML.setStyle('width', '25%')
     price10HTML.setText('10s')
     value.append(price10HTML)
 
-    const price30HTML = new nTd()
+    const price30HTML = new nTd2()
     price30HTML.setStyle('width', '25%')
     price30HTML.setText('30s')
     value.append(price30HTML)
 
-    const price60HTML = new nTd()
+    const price60HTML = new nTd2()
     price60HTML.setStyle('width', '25%')
     price60HTML.setText('60s')
     value.append(price60HTML)
@@ -107,27 +113,27 @@ export class Page extends HTML {
 
     this.state.values.binance.map(({ symbol, price }) => {
       const value = new nTr()
-      value.setStyle('margin-bottom', '1rem')
+      value.setStyle('margin', '1rem')
 
-      const symbolHTML = new nTd()
+      const symbolHTML = new nTd2()
       symbolHTML.setText(symbol)
       value.append(symbolHTML)
 
-      const priceHTML = new nTd()
+      const priceHTML = new nTd2()
       priceHTML.setText(`${price2string(price)}`)
       value.append(priceHTML)
 
-      const price10HTML = new nTd()
+      const price10HTML = new nTd2()
       const price10 = this.getPrice(symbol, 10)
       price10HTML.setText(`${price2string(price10)} (${price2string(price - price10)}) (${percent(price, price10)})`)
       value.append(price10HTML)
 
-      const price30HTML = new nTd()
+      const price30HTML = new nTd2()
       const price30 = this.getPrice(symbol, 30)
       price30HTML.setText(`${price2string(price30)} (${price2string(price - price30)}) (${percent(price, price30)})`)
       value.append(price30HTML)
 
-      const price60HTML = new nTd()
+      const price60HTML = new nTd2()
       const price60 = this.getPrice(symbol, 60)
       price60HTML.setText(`${price2string(price60)} (${price2string(price - price60)}) (${percent(price, price60)})`)
       value.append(price60HTML)
