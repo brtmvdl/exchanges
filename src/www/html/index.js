@@ -119,17 +119,17 @@ export class Page extends HTML {
 
       const price10HTML = new nTd()
       const price10 = this.getPrice(symbol, 10)
-      price10HTML.setText(`${price2string(price10)} (${price2string(price10 - price)}) (${percent(price, price10)})`)
+      price10HTML.setText(`${price2string(price10)} (${price2string(price - price10)}) (${percent(price, price10)})`)
       value.append(price10HTML)
 
       const price30HTML = new nTd()
       const price30 = this.getPrice(symbol, 30)
-      price30HTML.setText(`${price2string(price30)} (${price2string(price30 - price)}) (${percent(price, price30)})`)
+      price30HTML.setText(`${price2string(price30)} (${price2string(price - price30)}) (${percent(price, price30)})`)
       value.append(price30HTML)
 
       const price60HTML = new nTd()
       const price60 = this.getPrice(symbol, 60)
-      price60HTML.setText(`${price2string(price60)} (${price2string(price60 - price)}) (${percent(price, price60)})`)
+      price60HTML.setText(`${price2string(price60)} (${price2string(price - price60)}) (${percent(price, price60)})`)
       value.append(price60HTML)
 
       this.children.values.append(value)
