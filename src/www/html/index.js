@@ -207,7 +207,7 @@ export class Page extends HTML {
 
     this.children.buys_table.append(value)
 
-    const buys = Array.from(Local.get(['buys']))
+    const buys = Array.from(Local.get(['buys'], []))
 
     console.log({ buys })
 
